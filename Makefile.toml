@@ -1,0 +1,15 @@
+extend = "common.toml"
+
+[env]
+# Project information
+TITLE = "Vita Rust Starter"
+TITLEID = "RUST00002"
+
+[config]
+load_script = [
+    """
+    if [ ! -f common.toml ]; then
+        curl -SsL https://github.com/vita-rust/common/raw/master/common.toml > common.toml
+    fi
+    """
+]

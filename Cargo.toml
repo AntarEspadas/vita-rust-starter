@@ -1,0 +1,16 @@
+[package]
+name = "vita_rust_starter"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+psp2-sys = { git = "https://github.com/vita-rust/psp2-sys" }
+
+[lib]
+crate-type = ["staticlib"]
+
+[profile.release]
+lto = true
+panic = 'abort'
