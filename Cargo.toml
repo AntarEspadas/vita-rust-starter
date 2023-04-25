@@ -9,6 +9,7 @@ edition = "2021"
 psp2-sys = { git = "https://github.com/vita-rust/psp2-sys" }
 deblockator = { git = "https://github.com/Naratna/deblockator" }
 vitallocator = { git = "https://github.com/Naratna/vitallocator" }
+vita = { git = "https://github.com/Naratna/vita" }
 
 [lib]
 crate-type = ["staticlib"]

@@ -6,9 +6,7 @@ extern crate alloc;
 
 extern crate psp2_sys as psp2;
 
-mod debug;
-
-use core::{error::Error, fmt::Write, intrinsics, panic::PanicInfo};
+use core::{error::Error, fmt::Write, intrinsics, panic::PanicInfo, time::Duration};
 
 use alloc::boxed::Box;
 use deblockator::Deblockator;
@@ -29,13 +27,13 @@ fn panic(_info: &PanicInfo) -> ! {
 
 #[no_mangle]
 pub fn main(_argc: isize, _argv: *const *const u8) -> Result<(), Box<dyn Error>> {
-    let a = vec![1, 2, 3, 4, 5, 6];
-    let mut screen = debug::screen::DebugScreen::new();
+    let a = vec![1, 2, 3];
+    let mut screen = vita::debug::screen::DebugScreen::new(vita::debug::font::DEFAULT_FONT);
     writeln!(screen, "This bare-metal is starting to rust! {a:?}")?;
+    vita::thread::sleep(Duration::from_secs(1)); // Wait for 1 second
+    writeln!(screen, "See ? I told you !")?;
+    vita::thread::sleep(Duration::from_secs(3));
     unsafe {
-        psp2::kernel::threadmgr::sceKernelDelayThread(1_000_000); // Wait for 1 second
-        writeln!(screen, "See ? I told you !")?;
-        psp2::kernel::threadmgr::sceKernelDelayThread(3 * 1_000_000);
         psp2::kernel::processmgr::sceKernelExitProcess(0);
     }
     Ok(())
