@@ -9,7 +9,7 @@ TITLEID = "RUST00002"
 load_script = [
     """
     if [ ! -f common.toml ]; then
-        curl -SsL https://github.com/vita-rust/common/raw/master/common.toml > common.toml
+        curl -SsL https://raw.githubusercontent.com/kourm/common/build-std/common.toml > common.toml
     fi
     """
 ]
